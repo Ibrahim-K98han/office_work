@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 import '../model/info_model.dart';
 
 class InfoDataProvider with ChangeNotifier{
@@ -14,8 +15,43 @@ class InfoDataProvider with ChangeNotifier{
     _infoList.add(StudentInfo(id: id, name: name, email: email, mobile: mobile, address: address));
     notifyListeners();
   }
+
   void deleteData(StudentInfo name){
     _infoList.remove(name);
     notifyListeners();
   }
+
+  void clearInfo(
+    TextEditingController idController,
+    TextEditingController nameController,
+    TextEditingController emailController, 
+    TextEditingController mobileController, 
+    TextEditingController addressController) {
+    idController.clear();
+    nameController.clear();
+    emailController.clear();
+    mobileController.clear();
+    addressController.clear();
+    notifyListeners();
+  }
+
+  void updateInfo(int index, StudentInfo info){
+    _infoList[index] = info;
+    notifyListeners();
+  }
+
+  void textCotrollerUpdate(
+  TextEditingController idController,
+  TextEditingController nameController,
+  TextEditingController emailController, 
+  TextEditingController mobileController, 
+  TextEditingController addressController, StudentInfo info){
+    
+    idController.text = info.id.toString();
+    nameController.text = info.name.toString();
+    emailController.text = info.email.toString();
+    mobileController.text = info.mobile.toString();
+    addressController.text = info.address.toString();
+  }
 }
+
